@@ -23,7 +23,7 @@ int CURSOR_RADIUS = 10;
 COLORREF cursorColor = RGB(0, 255, 0);
 CursorShape cursorShape = CIRCLE;
 
-//reads config file
+//Reads config file
 void LoadCursorConfig(const char* filename) {
     FILE* file = fopen(filename, "r");
     if (!file) return;
@@ -163,23 +163,6 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) {
     }
     return DefWindowProc(hwnd, msg, wParam, lParam);
 }
-
-/*void UpdateLoop() {
-    while (running) {
-        auto mono = CaptureFPSRegion();
-        int fps = ParseFPSFromRegion(mono);
-        if (fps != -1) {
-            cursorColor = GetColorForFPS(fps);
-            OutputDebugStringA(("FPS: " + std::to_string(fps) + "\n").c_str());
-        } else {
-            cursorColor = RGB(128, 128, 128);  // unknown
-        }
-        InvalidateRect(hOverlay, NULL, TRUE);
-        Sleep(1000);
-    }
-	return 0;
-}*/
-
 DWORD WINAPI UpdateLoop(LPVOID) {
     while (running) {
         auto mono = CaptureFPSRegion();
@@ -195,13 +178,6 @@ DWORD WINAPI UpdateLoop(LPVOID) {
     }
     return 0;
 }
-
-/*DWORD WINAPI UpdateLoopThread(LPVOID) {
-    UpdateLoop();
-    return 0;
-}*/
-
-
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR, int) {
     LoadCursorConfig("config.json");
 
@@ -237,4 +213,5 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR, int) {
     }
 
     return 0;
+
 }
